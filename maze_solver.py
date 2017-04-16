@@ -1,10 +1,13 @@
-maze = [[0, 0, 1, 0, 1],
-        [0, 1, 0, 0, 0],
-        [0, 1, 0, 1, 0],
-        [0, 0, 0, 1, 0],
-        [1, 1, 1, 0, 9]
+maze=[[0, 0, 1, 0, 1],
+      [0, 1, 0, 0, 0],
+      [0, 1, 0, 1, 0],
+      [0, 0, 0, 1, 0],
+      [1, 1, 1, 0, 9]
 ]
+
+
 from tabulate import tabulate
+import sys
 width = len(maze)
 height = len(maze[0])
 print ('Maze width: %s, height %s' % (width, height))
@@ -23,12 +26,15 @@ def move(x, y):
         print('Out of bounds'); return
     if maze[x][y] == 9:
         FoundWayOut = True
-        print('Got it!'); return
+        print('Got it!')
+        sys.exit()
+        return
     if maze[x][y] == 1:
         print('That is wall'); return
     if maze[x][y] == 2:
         print('Was here before'); return
     maze[x][y] = 2
+
 
     move(x + 1, y) # East
     move(x, y + 1) # South
